@@ -532,23 +532,73 @@ h1, h2, h3, h4, h5, h6 {
 .brands-section {
     padding: 120px 0;
     background: #ffffff;
+    overflow: hidden;
 }
 
-.brands-grid {
+.brands-marquee-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 40px;
-    max-width: 800px;
-    margin: 0 auto;
+    align-items: center;
+    padding: 20px 0;
+}
+
+/* Mask for fade effect on edges */
+.brands-marquee-wrapper::before,
+.brands-marquee-wrapper::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 150px;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+}
+.brands-marquee-wrapper::before {
+    left: 0;
+    background: linear-gradient(to right, #ffffff, transparent);
+}
+.brands-marquee-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, #ffffff, transparent);
+}
+
+.brands-marquee {
+    display: flex;
+    gap: 60px;
+    align-items: center;
+    animation: scroll-marquee 30s linear infinite;
+    width: max-content;
+}
+
+@keyframes scroll-marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-50% - 30px)); }
+}
+
+.brands-marquee:hover {
+    animation-play-state: paused;
 }
 
 .brand-item {
+    display: flex;
+    align-items: center;
+    gap: 16px;
     font-size: 24px;
     font-weight: 600;
     color: var(--text-secondary);
     transition: color 0.3s;
     cursor: default;
+    white-space: nowrap;
+}
+
+.brand-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
 .brand-item:hover {
