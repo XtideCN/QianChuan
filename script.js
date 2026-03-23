@@ -99,13 +99,50 @@ document.addEventListener('DOMContentLoaded', () => {
     // Trigger initial scroll event to set correct header state
     window.dispatchEvent(new Event('scroll'));
 
-    // Contact form submission simulation
+    // Contact form submission - Email Client Integration
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
-            alert('感谢您的提交！我们的专家将尽快与您联系。');
-            contactForm.reset();
+            
+            // Get form values
+            const inputs = contactForm.querySelectorAll('input');
+            const textarea = contactForm.querySelector('textarea');
+            
+            const company = inputs[0].value;
+            const position = inputs[1].value;
+            const name = inputs[2].value;
+            const phone = inputs[3].value;
+            const requirements = textarea.value;
+
+            // Email details
+            const emailTo = "xenoqianchuan@gmail.com";
+            const subject = encodeURIComponent(`TikTok 美区出海合作咨询 - ${company}`);
+            
+            // Construct structured body
+            const bodyContent = `
+您好，
+
+我想咨询关于 TikTok 美区出海的合作事宜。以下是我的联系信息：
+
+公司名称: ${company}
+职位: ${position}
+姓名: ${name}
+手机号码: ${phone}
+
+具体需求描述:
+${requirements}
+
+期待您的回复。
+            `.trim();
+
+            const mailtoUrl = `mailto:${emailTo}?subject=${subject}&body=${encodeURIComponent(bodyContent)}`;
+
+            // Trigger email client
+            window.location.href = mailtoUrl;
+
+            // Optional: reset form or show a small feedback
+            // contactForm.reset();
         });
     }
 });
