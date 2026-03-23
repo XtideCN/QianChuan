@@ -116,7 +116,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const requirements = textarea.value;
 
             // Email details
-            const emailTo = "xenoqianchuan@gmail.com";
+            const emailTo = "contact@xtide.cn";
             const subject = encodeURIComponent(`TikTok 美区出海合作咨询 - ${company}`);
             
             // Construct structured body
