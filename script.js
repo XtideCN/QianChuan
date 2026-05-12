@@ -99,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Trigger initial scroll event to set correct header state
     window.dispatchEvent(new Event('scroll'));
 
-    // Contact form submission - Email Client Integration
+    // Contact form submission - Email Client Integration (Multilingual Support)
     const contactForm = document.querySelector('.contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', (e) => {
@@ -115,12 +115,16 @@ document.addEventListener('DOMContentLoaded', () => {
             const phone = inputs[3].value;
             const requirements = textarea.value;
 
+            // Determine current language
+            const isZh = document.documentElement.lang === 'zh' || window.location.pathname.includes('index.zh.html');
+            
             // Email details
             const emailTo = "contact@xtide.cn";
-            const subject = encodeURIComponent(`TikTok 美区出海合作咨询 - ${company}`);
+            let subject, bodyContent;
             
-            // Construct structured body
-            const bodyContent = `
+            if (isZh) {
+                subject = encodeURIComponent(`TikTok 美区出海合作咨询 - ${company}`);
+                bodyContent = `
 您好，
 
 我想咨询关于 TikTok 美区出海的合作事宜。以下是我的联系信息：
@@ -134,7 +138,25 @@ document.addEventListener('DOMContentLoaded', () => {
 ${requirements}
 
 期待您的回复。
-            `.trim();
+                `.trim();
+            } else {
+                subject = encodeURIComponent(`TikTok US Market Collaboration Inquiry - ${company}`);
+                bodyContent = `
+Hello,
+
+I would like to inquire about TikTok US market collaboration. Below is my contact information:
+
+Company: ${company}
+Position: ${position}
+Name: ${name}
+Phone: ${phone}
+
+Specific Requirements Description:
+${requirements}
+
+Looking forward to your reply.
+                `.trim();
+            }
 
             const mailtoUrl = `mailto:${emailTo}?subject=${subject}&body=${encodeURIComponent(bodyContent)}`;
 

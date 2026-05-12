@@ -202,6 +202,22 @@ h1, h2, h3, h4, h5, h6 {
     font-size: 13px;
     color: var(--text-secondary);
     cursor: pointer;
+    text-decoration: none;
+    padding: 6px 12px;
+    border-radius: 980px;
+    border: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.lang-switch:hover {
+    color: var(--text-main);
+    background-color: rgba(0, 0, 0, 0.05);
+    border-color: rgba(0, 0, 0, 0.1);
+}
+
+.lang-switch:hover {
+    color: var(--primary-color);
+    background-color: rgba(0, 113, 227, 0.08);
 }
 
 /* Hero Section */
