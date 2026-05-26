@@ -31,6 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const isZhPage = currentPage.includes('index.zh.html');
   
   // 自动跳转逻辑（仅在第一次访问时执行）
+  // 默认英文为主要版本
   if (isChinese && !isZhPage) {
     // 中文环境，不在中文页面 -> 跳转到中文页面
     window.location.href = 'index.zh.html';

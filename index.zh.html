@@ -2,471 +2,953 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <title>千川出海 - 全球头牌TikTok品牌聚合商</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="bf-stats.css">
-    <script src="locales.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="facebook-domain-verification" content="apd9x4sytpk3ife1zcpwjq4dug23fg" />
+    <title>千川出海 XTIDE - 全球领先的 TikTok 品牌聚合商</title>
+    <!-- Tailwind CSS -->
+    <script src="https://modao.cc/agent-py/static/source/js/tailwindcss.js"></script>
+    <!-- Iconify -->
+    <script src="https://modao.cc/agent-py/static/source/js/iconify-icon.min.js"></script>
+    <!-- ECharts -->
+    <script src="https://modao.cc/agent-py/static/source/js/echarts.min.js"></script>
+    <style>
+        @keyframes pulse-gold {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .animate-pulse-gold {
+            animation: pulse-gold 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        .glass-nav {
+            background: rgba(8, 15, 30, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .text-gradient-gold {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 50%, #d97706 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bg-gradient-gold {
+            background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%);
+        }
+        .bg-logo {
+            background: linear-gradient(135deg, #ebf7ff 0%, #ffffff 100%);
+        }
+        .card-hover {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(245, 158, 11, 0.15);
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+        .tech-border {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #020617;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e293b;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #f59e0b;
+        }
+        
+        /* Brands Marquee CSS (已修复挤压变形问题) */
+        .brands-marquee-wrapper {
+            overflow: hidden;
+            display: flex;
+            width: 100%;
+            mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+            -webkit-mask-image: linear-gradient(to right, transparent, black 5%, black 95%, transparent);
+        }
+        .brands-marquee {
+            display: flex;
+            width: max-content;
+            animation: scroll-left 35s linear infinite;
+            gap: 1.5rem;
+            padding-right: 1.5rem;
+        }
+        .brands-marquee:hover {
+            animation-play-state: paused;
+        }
+        @keyframes scroll-left {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .brand-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 0.6rem 1.5rem;
+            border-radius: 9999px;
+            color: #0f172a;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s;
+            /* 关键修复代码：禁止文字换行和元素被挤压 */
+            white-space: nowrap; 
+            flex-shrink: 0; 
+        }
+        .brand-item:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(245, 158, 11, 0.3);
+        }
+        .brand-item img {
+            height: 28px;
+            width: auto;
+            object-fit: contain;
+            flex-shrink: 0; /* 防止图片自身变形 */
+        }
+    </style>
 </head>
-<body>
+<body class="bg-slate-950 text-slate-200 font-sans leading-relaxed overflow-x-hidden">
 
-    <!-- Header -->
-    <header class="header">
-        <div class="container header-container">
-            <a href="#" class="logo">
-                <span class="logo-icon"><img src="logo.png"></span>
-                <!-- <span class="logo-text">EO Agency</span> -->
-            </a>
-            <nav class="nav">
-                <a href="#home" class="nav-link">首页</a>
-                <a href="#services" class="nav-link">核心业务</a>
-                <a href="#advantages" class="nav-link">平台优势</a>
-                <a href="#cases" class="nav-link">成功案例</a>
-            </nav>
-            <div class="header-actions">
-                <a href="#contact" class="btn btn-primary">联系我们</a>
-                <a href="index.html" class="lang-switch">English</a>
+    <!-- 1. 顶部导航栏 -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-nav">
+        <div class="max-w-[1440px] mx-auto px-6 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-logo rounded-lg flex items-center justify-center shadow-lg p-1">
+                    <img src="favicon.ico" alt="Favicon" class="w-full h-full object-contain">
+                </div>
+                <div class="flex flex-col">
+                    <span class="text-xl font-bold tracking-tight text-white flex items-center gap-1">XTIDE 千川出海</span>
+                    <span class="text-[10px] text-slate-400 tracking-wider uppercase font-semibold">Brand Aggregator</span>
+                </div>
             </div>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="container hero-content reveal">
-            <div class="hero-badge">Global Service</div>
-            <h1>千川出海<br><span>助力品牌全球化</span></h1>
-            <p>全球头牌 TikTok 品牌聚合商，专注 TikTok Shop 美区全链路出海服务，为前瞻性品牌破局北美。</p>
-            <div class="hero-actions">
-                <a href="#services" class="btn btn-primary">了解业务</a>
-                <a href="#cases" class="btn btn-secondary">查看案例</a>
-            </div>
-        </div>
-    </section>
-
-    <!-- Timeline Section (Bento Box) -->
-    <section class="timeline-section">
-        <div class="container">
-            <h2 class="section-title reveal">发展历程</h2>
-            <p class="section-subtitle reveal">TikTok 业务发展及布局</p>
             
-            <div class="bento-grid">
-                <div class="bento-card reveal">
-                    <div class="timeline-date">2023</div>
-                    <h3>美区 TK 正式运营</h3>
-                    <p>正式开启 TikTok 美区业务<br>与 SHEIN 等平台达成战略合作</p>
-                </div>
-                <div class="bento-card reveal" style="transition-delay: 0.1s;">
-                    <div class="timeline-date">2024</div>
-                    <h3>代运营沉淀</h3>
-                    <p>精准招商<br>不断积累头部品牌成功出海案例</p>
-                </div>
-                <div class="bento-card reveal" style="transition-delay: 0.2s;">
-                    <div class="timeline-date">2025</div>
-                    <h3>品牌收并购</h3>
-                    <p>完成第一批品牌收并购<br>赋能产品、包装、沟通等五大要素</p>
-                </div>
-                <div class="bento-card wide reveal" style="transition-delay: 0.1s;">
-                    <div class="timeline-date">2026</div>
-                    <h3>聚焦核心类目拓展</h3>
-                    <p>聚焦核心类目进行精准收购，并逐步拓展线下渠道及其他地区市场。携手品牌共同征服全球市场。</p>
-                </div>
+            <div class="hidden xl:flex items-center gap-8 text-sm font-medium">
+                <a href="#home" class="hover:text-amber-500 transition-colors">首页</a>
+                <a href="#about" class="hover:text-amber-500 transition-colors">公司介绍</a>
+                <a href="#insights" class="hover:text-amber-500 transition-colors">市场洞察</a>
+                <a href="#formula" class="hover:text-amber-500 transition-colors">增长公式</a>
+                <a href="#business" class="hover:text-amber-500 transition-colors">核心业务</a>
+                <a href="#ai" class="hover:text-amber-500 transition-colors">AI赋能</a>
+                <a href="#case" class="hover:text-amber-500 transition-colors">合作案例</a>
+                <a href="#process" class="hover:text-amber-500 transition-colors">服务流程</a>
+                <a href="mailto:contact@xtide.cn" class="px-5 py-2.5 bg-gradient-gold text-slate-950 rounded-full hover:shadow-[0_0_20px_rgba(245,158,11,0.4)] transition-all font-bold">联系我们</a>
             </div>
-        </div>
-    </section>
-
-    <!-- Black Friday Stats Section -->
-    <section class="bf-section reveal">
-        <div class="container">
-            <div class="bf-header">
-                <div class="bf-title-row">
-                    <span class="bf-red-dot"></span>
-                    <h2 class="bf-title">2025黑五大促回顾</h2>
-                </div>
-                <div class="bf-subtitle">2025 Black Friday Recap</div>
-                <div class="bf-highlight">美区GMV翻倍增长，内容电商引流效应显著</div>
-            </div>
-
-            <div class="bf-body">
-                <div class="bf-left-stats">
-                    <div class="bf-stat-row">
-                        <div class="bf-stat-item">
-                            <div class="bf-val bf-val-red">215% <span class="bf-arrow-up"></span></div>
-                            <div class="bf-label bf-label-red">整体支付GMV</div>
-                        </div>
-                        <div class="bf-stat-item">
-                            <div class="bf-val bf-val-cyan">4倍</div>
-                            <div class="bf-label bf-label-cyan">黑五当日GMV</div>
-                        </div>
-                    </div>
-                    <div class="bf-stat-row" style="margin-top: 50px;">
-                        <div class="bf-stat-item">
-                            <div class="bf-val bf-val-cyan">190% <span class="bf-arrow-up"></span></div>
-                            <div class="bf-label bf-label-cyan">直播场域商品PV</div>
-                        </div>
-                        <div class="bf-stat-item">
-                            <div class="bf-val bf-val-cyan">160% <span class="bf-arrow-up"></span></div>
-                            <div class="bf-label bf-label-cyan">短视频场域商品PV</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bf-right-chart">
-                    <div class="bf-chart-wrapper">
-                        <svg viewBox="0 0 800 400" preserveAspectRatio="none" class="bf-svg">
-                            <defs>
-                                <linearGradient id="cyanGrad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#00f0ff" stop-opacity="0.4"/>
-                                    <stop offset="100%" stop-color="#00f0ff" stop-opacity="0"/>
-                                </linearGradient>
-                                <linearGradient id="redGrad" x1="0" y1="0" x2="0" y2="1">
-                                    <stop offset="0%" stop-color="#ff2a55" stop-opacity="0.4"/>
-                                    <stop offset="100%" stop-color="#ff2a55" stop-opacity="0"/>
-                                </linearGradient>
-                            </defs>
-                            
-                            <!-- Area Fills -->
-                            <path d="M 0 400 L 0 320 C 60 320 90 220 150 220 C 200 220 220 300 250 300 L 250 400 Z" fill="url(#cyanGrad)"/>
-                            <path d="M 250 400 L 250 300 C 280 300 320 230 350 230 C 380 230 400 290 425 290 C 450 290 470 210 500 210 C 530 210 550 270 575 270 C 600 270 620 240 650 240 C 680 240 700 290 730 290 C 760 290 780 140 800 140 L 800 400 Z" fill="url(#redGrad)"/>
-
-                            <!-- Lines -->
-                            <path d="M -10 320 C 60 320 90 220 150 220 C 200 220 220 300 250 300" fill="none" stroke="#00f0ff" stroke-width="3"/>
-                            <path d="M 250 300 C 280 300 320 230 350 230 C 380 230 400 290 425 290 C 450 290 470 210 500 210 C 530 210 550 270 575 270 C 600 270 620 240 650 240 C 680 240 700 290 730 290 C 760 290 780 140 850 140" fill="none" stroke="#ff2a55" stroke-width="3"/>
-                            
-                            <!-- Dots -->
-                            <circle cx="150" cy="220" r="4" fill="#ffffff" stroke="#00f0ff" stroke-width="2"/>
-                            <circle cx="350" cy="230" r="4" fill="#ffffff" stroke="#ff2a55" stroke-width="2"/>
-                            <circle cx="500" cy="210" r="4" fill="#ffffff" stroke="#ff2a55" stroke-width="2"/>
-                            <circle cx="650" cy="240" r="4" fill="#ffffff" stroke="#ff2a55" stroke-width="2"/>
-                        </svg>
-
-                        <!-- Labels Overlay -->
-                        <div class="bf-point-label" style="left: 18.75%; top: 55%;">
-                            <div class="bf-tag bf-tag-cyan">2025美区黑五</div>
-                            <div class="bf-val-small bf-text-cyan">+215%</div>
-                        </div>
-
-                        <div class="bf-point-label" style="left: 43.75%; top: 57.5%;">
-                            <div class="bf-tag bf-tag-red">美区夏季大促</div>
-                            <div class="bf-val-small bf-text-red">+129%</div>
-                        </div>
-
-                        <div class="bf-point-label" style="left: 62.5%; top: 52.5%;">
-                            <div class="bf-tag bf-tag-red">美区年中大促</div>
-                            <div class="bf-val-small bf-text-red">+145%</div>
-                        </div>
-
-                        <div class="bf-point-label" style="left: 81.25%; top: 60%;">
-                            <div class="bf-tag bf-tag-red">美区返校季大促</div>
-                            <div class="bf-val-small bf-text-red">+117%</div>
-                        </div>
-
-                        <div class="bf-final-label" style="left: 95%; top: 25%;">
-                            <div class="bf-final-title">2025黑五大促</div>
-                            <div class="bf-final-subtitle">迎接销量最高峰</div>
-                            <div class="bf-arrow-big"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="services-section">
-        <div class="container">
-            <h2 class="section-title reveal">核心业务</h2>
-            <p class="section-subtitle reveal">六大服务模式，全方位赋能 TikTok 出海</p>
             
-            <div class="services-tabs reveal">
-                <button class="tab-btn active" data-tab="influencer">达人业务</button>
-                <button class="tab-btn" data-tab="material">短视频与切片</button>
-                <button class="tab-btn" data-tab="tsp">直播 DP</button>
-                <button class="tab-btn" data-tab="pr">投流与物流</button>
-            </div>
-
-            <div class="service-content active reveal" id="influencer">
-                <div class="service-details">
-                    <p class="service-desc">基于 4 阶段全案运营规划，提供海量优质达人资源，快速引爆品牌声量，形成“短视频+直播+商品卡”的商业闭环。</p>
-                    <div class="service-icons">
-                        <div class="icon-box">
-                            <span class="icon-circle">📊</span>
-                            <h4>深度分析</h4>
-                            <small>品牌与市场定位调研</small>
-                        </div>
-                        <div class="icon-box">
-                            <span class="icon-circle">💡</span>
-                            <h4>运营优化</h4>
-                            <small>流量监控与视觉优化</small>
-                        </div>
-                        <div class="icon-box">
-                            <span class="icon-circle">🌍</span>
-                            <h4>素材放大</h4>
-                            <small>AI+AE 剪辑规模化放量</small>
-                        </div>
-                        <div class="icon-box">
-                            <span class="icon-circle">📈</span>
-                            <h4>人群资产</h4>
-                            <small>品牌与产品长效增长</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="service-content reveal" id="material">
-                <div class="service-details">
-                    <p class="service-desc">通过本土化创意内容与工业化剪辑流程，打造病毒式传播素材，实现品牌声量与销售转化的双重爆发。</p>
-                    <div class="service-icons">
-                        <div class="icon-box">
-                            <span class="icon-circle">🎬</span>
-                            <h4>本土创意</h4>
-                            <small>纽约专业团队策划</small>
-                        </div>
-                        <div class="icon-box">
-                            <span class="icon-circle">⚡</span>
-                            <h4>工业化剪辑</h4>
-                            <small>月产 6000+ 高质视频</small>
-                        </div>
-                        <div class="icon-box">
-                            <span class="icon-circle">🎞️</span>
-                            <h4>达人切片</h4>
-                            <small>二次创作最大化流量</small>
-                        </div>
-                        <div class="icon-box">
-                            <span class="icon-circle">🎯</span>
-                            <h4>爆款基因</h4>
-                            <small>大数据驱动内容迭代</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="service-content reveal" id="tsp">
-                <div class="service-details">
-                    <p class="service-desc">依托纽约本土直播基地与顶级外籍主播团队，提供一站式直播间搭建、运营与带货服务，打造美区沉浸式购物体验。</p>
-                    <div class="service-icons">
-                        <div class="icon-box">
-                            <span class="icon-circle">🎙️</span>
-                            <h4>顶级主播</h4>
-                            <small>签约 30+ 纯正美语主播</small>
-                        </div>
-                        <div class="icon-box">
-                            <span class="icon-circle">🏛️</span>
-                            <h4>专业影棚</h4>
-                            <small>20+ 沉浸式实景直播间</small>
-                        </div>
-                        <div class="icon-box">
-                            <span class="icon-circle">⚙️</span>
-                            <h4>极致运营</h4>
-                            <small>脚本编写与实时场控</small>
-                        </div>
-                        <div class="icon-box">
-                            <span class="icon-circle">📈</span>
-                            <h4>数据归因</h4>
-                            <small>精细化分析与复盘</small>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="service-content reveal" id="pr">
-                <div class="service-details">
-                    <p class="service-desc">打通流量分发与履约交付的全链路，通过精准广告投放获取确定性增长，并提供低成本、高效率的定制化物流解决方案。</p>
-                    <div class="service-icons">
-                        <div class="icon-box">
-                            <span class="icon-circle">🚀</span>
-                            <h4>精准投流</h4>
-                            <small>TikTok Ads 全面优化</small>
-                        </div>
-                        <div class="icon-box">
-                            <span class="icon-circle">📦</span>
-                            <h4>定制物流</h4>
-                            <small>解决美区末端履约痛点</small>
-                        </div>
-                        <div class="icon-box">
-                            <span class="icon-circle">🏦</span>
-                            <h4>海外仓配</h4>
-                            <small>自营仓储提升发货效率</small>
-                        </div>
-                        <div class="icon-box">
-                            <span class="icon-circle">💸</span>
-                            <h4>成本领先</h4>
-                            <small>深度资源整合降低支出</small>
-                        </div>
-                    </div>
-                </div>
+            <div class="flex items-center gap-4">
+                <a href="index.html" class="lang-switch text-sm font-medium text-slate-300 hover:text-amber-500 transition-colors">EN</a>
+                <button class="xl:hidden text-white text-3xl" onclick="toggleMobileMenu()">
+                    <iconify-icon icon="mdi:menu"></iconify-icon>
+                </button>
             </div>
         </div>
-    </section>
-
-    <!-- Advantages Section -->
-    <section id="advantages" class="advantages-section">
-        <div class="container">
-            <h2 class="section-title reveal">平台优势</h2>
-            <p class="section-subtitle reveal">为什么选择千川出海</p>
-            
-            <div class="advantages-grid">
-                <div class="advantage-card reveal">
-                    <div class="adv-icon">🔥</div>
-                    <h3>海量优质资源</h3>
-                    <div class="adv-tag">80,000+ 达人资源</div>
-                    <p class="adv-desc">拥有海量美国本土合作达人库，累计服务超过 800+ 品牌客户。<br><br>涵盖美妆个护、3C数码、宠物用品、小家电、时尚服饰等五大核心类目。</p>
-                </div>
-                <div class="advantage-card reveal" style="transition-delay: 0.1s;">
-                    <div class="adv-icon">🌐</div>
-                    <h3>全球本土化团队</h3>
-                    <div class="adv-tag">中美双基地双核驱动</div>
-                    <ul class="adv-list">
-                        <li><strong>广州基地：</strong>100+ 达人经纪人团队，具备月产 6000+ 短视频的工业化内容产能。</li>
-                        <li><strong>纽约基地：</strong>30+ 本土核心运营团队与签约主播，拥有 20 个专属直播间，提供极致的本土化内容消费体验。</li>
-                        <li><strong>定制物流：</strong>解决出海高成本痛点，领先行业梯队。</li>
-                    </ul>
-                </div>
-            </div>
+        <!-- 移动端侧边菜单占位（通过JS控制显示隐藏） -->
+        <div id="mobileMenu" class="hidden xl:hidden bg-slate-900 border-t border-white/10 px-6 py-4 space-y-3">
+            <a href="#home" class="block text-slate-300 hover:text-amber-500 py-1" onclick="toggleMobileMenu()">首页</a>
+            <a href="#about" class="block text-slate-300 hover:text-amber-500 py-1" onclick="toggleMobileMenu()">公司介绍</a>
+            <a href="#business" class="block text-slate-300 hover:text-amber-500 py-1" onclick="toggleMobileMenu()">核心业务</a>
+            <a href="#ai" class="block text-slate-300 hover:text-amber-500 py-1" onclick="toggleMobileMenu()">AI赋能</a>
+            <a href="#case" class="block text-slate-300 hover:text-amber-500 py-1" onclick="toggleMobileMenu()">合作案例</a>
+            <a href="#process" class="block text-slate-300 hover:text-amber-500 py-1" onclick="toggleMobileMenu()">服务流程</a>
         </div>
-    </section>
+    </nav>
 
-    <!-- Success Cases Section -->
-    <section id="cases" class="cases-section">
-        <div class="container">
-            <h2 class="section-title reveal">成功案例</h2>
-            <p class="section-subtitle reveal">助力前瞻性品牌破局北美</p>
-            
-            <div class="cases-grid">
-                <div class="case-card reveal">
-                    <div class="case-logo">Homeika</div>
-                    <div class="case-tag">小家电</div>
-                    <p class="case-quote">“小家电类目登顶第一。结合自营、外部达人与渠道分发，成功打造了爆款矩阵，历史总 GMV 突破千万美元级。”</p>
+    <!-- 2. Hero区域 -->
+    <section id="home" class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-slate-950">
+        <!-- 背景炫光装饰 -->
+        <div class="absolute inset-0 z-0">
+            <div class="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-amber-500/10 rounded-full blur-[120px] animate-pulse"></div>
+            <div class="absolute bottom-1/4 right-1/4 w-[600px] h-[600px] bg-blue-600/10 rounded-full blur-[150px]"></div>
+        </div>
+
+        <div class="max-w-[1440px] mx-auto px-6 relative z-10 w-full py-16">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 space-y-8">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-500/10 border border-amber-500/20 text-amber-500 text-sm font-bold tracking-wide">
+                        <iconify-icon icon="mdi:shield-check"></iconify-icon>
+                        TikTok 官方认证 TSP、TAP 及 MCN 机构
+                    </div>
+                    <h1 class="text-5xl md:text-7xl font-black text-white leading-[1.15]">
+                        全球头牌 <br/>
+                        <span class="text-gradient-gold">TikTok 品牌聚合商</span>
+                    </h1>
+                    <p class="text-lg md:text-xl text-slate-400 max-w-2xl leading-relaxed">
+                        专注于为中国品牌提供一站式、全链路出海解决方案。依托“AI驱动 + 本土化资源”，助力中国企业打破文化壁垒，在全球主流市场实现确定性增长。
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <a href="#about" class="px-8 py-4 bg-gradient-gold text-slate-950 rounded-xl text-lg font-bold hover:scale-105 transition-transform flex items-center gap-2">
+                            了解我们 <iconify-icon icon="mdi:arrow-down"></iconify-icon>
+                        </a>
+                        <a href="mailto:contact@xtide.cn" class="px-8 py-4 bg-white/5 border border-white/10 text-white rounded-xl text-lg font-bold hover:bg-white/10 transition-colors">
+                            商务合作
+                        </a>
+                    </div>
+                    <!-- 数据亮点 -->
+                    <div class="pt-8 grid grid-cols-2 md:grid-cols-4 gap-6 border-t border-white/10">
+                        <div>
+                            <div class="text-3xl font-bold text-amber-500">20万+</div>
+                            <div class="text-xs text-slate-500 mt-1">全球垂类达人私库</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-white">800+</div>
+                            <div class="text-xs text-slate-500 mt-1">已服务出海品牌</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-white">10+</div>
+                            <div class="text-xs text-slate-500 mt-1">全球分支运营中心</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-bold text-white">1.2万亿</div>
+                            <div class="text-xs text-slate-500 mt-1">内容电商市场(2026)</div>
+                        </div>
+                    </div>
                 </div>
                 
-                <div class="case-card reveal" style="transition-delay: 0.1s;">
-                    <div class="case-logo" style="color:#000;">The Ordinary</div>
-                    <div class="case-tag">美妆个护</div>
-                    <p class="case-quote">“打造明星直播间效应，通过高效的达人短视频分发与专业直播 DP 协同，累计实现了惊人的千万级销售转化。”</p>
-                </div>
-                
-                <div class="case-card reveal" style="transition-delay: 0.2s;">
-                    <div class="case-logo" style="color:#e60044;">ealikteal</div>
-                    <div class="case-tag">时尚服饰</div>
-                    <p class="case-quote">“超级品牌日期间连夺三天女装品类榜首。本土主播通过病毒式带货直播，直接拉动 GMV 极速增长。”</p>
+                <!-- 广州、纽约双基地布局展示 -->
+                <div class="lg:col-span-5 bg-slate-900/50 rounded-3xl p-8 border border-white/10 space-y-6 shadow-2xl">
+                    <h3 class="text-xl font-bold text-white flex items-center gap-2">
+                        <iconify-icon icon="mdi:earth" class="text-amber-500 text-2xl"></iconify-icon>
+                        双总部跨时区联动布局
+                    </h3>
+                    
+                    <div class="space-y-4 border-b border-white/5 pb-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-amber-500 font-bold flex items-center gap-1.5 text-base">
+                                <iconify-icon icon="mdi:map-marker"></iconify-icon> 中国·广州总部
+                            </span>
+                            <span class="text-xs px-2.5 py-0.5 rounded bg-amber-500/10 text-amber-500">数字化管理中心</span>
+                        </div>
+                        <p class="text-sm text-slate-400">
+                            依托广州先进的数字化中台，旗下签约达人经纪人 30位+，拥有月产能 3000条+ 的高质量短视频生产力，实现全数字可视化团队管理。
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <div class="flex justify-between items-center">
+                            <span class="text-blue-400 font-bold flex items-center gap-1.5 text-base">
+                                <iconify-icon icon="mdi:map-marker"></iconify-icon> 美国·纽约本地中心
+                            </span>
+                            <span class="text-xs px-2.5 py-0.5 rounded bg-blue-500/10 text-blue-400">535, 8th Ave</span>
+                        </div>
+                        <p class="text-sm text-slate-400">
+                            设立纽约本土运营中心，掌握行业TOP级海外运营团队与外籍主播红人资源，通过纽约本地化执行团队，实现“亚美跨时区无缝联动”。
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Brands Section -->
-    <section class="brands-section">
-        <div class="container reveal">
-            <h2 class="section-title" style="font-size: 32px; margin-bottom: 40px;">合作品牌</h2>
+    <!-- 3. 公司介绍 & 三大支柱 (About Section) -->
+    <section id="about" class="py-24 bg-slate-900/30 border-t border-white/5">
+        <div class="max-w-[1440px] mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl font-bold text-white">关于 XTIDE 千川出海</h2>
+                <div class="w-20 h-1 bg-gradient-gold mx-auto"></div>
+                <p class="text-slate-400 max-w-2xl mx-auto">以品牌战略为核心，用新内容生态覆盖用户所有场景触点</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- 支柱一：全球化基因 -->
+                <div class="p-8 rounded-2xl bg-slate-900 border border-white/5 hover:border-amber-500/30 transition-all">
+                    <div class="w-14 h-14 rounded-xl bg-amber-500/10 flex items-center justify-center mb-6">
+                        <iconify-icon icon="mdi:web" class="text-3xl text-amber-500"></iconify-icon>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">全球化基因与布局</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        结合行业顶尖的本土化运营实力，与跨语种外籍专业主播资源，依托海外据点执行与国内数字中心，具备真正的全球化视野与当地落地执行力。
+                    </p>
+                </div>
+
+                <!-- 支柱二：AI+营销一体化 -->
+                <div class="p-8 rounded-2xl bg-slate-900 border border-white/5 hover:border-amber-500/30 transition-all">
+                    <div class="w-14 h-14 rounded-xl bg-blue-500/10 flex items-center justify-center mb-6">
+                        <iconify-icon icon="mdi:brain-freeze" class="text-3xl text-blue-400"></iconify-icon>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">AI + 营销一体化</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        自研出海垂直 AI 大模型、数字化投放 SaaS 与数据 BI 中台。利用 AI 赋能智能视频剪辑、数字人代播及自动化精准投流，实现全链路数据驱动。
+                    </p>
+                </div>
+
+                <!-- 支柱三：深度资源与增长驱动 -->
+                <div class="p-8 rounded-2xl bg-slate-900 border border-white/5 hover:border-amber-500/30 transition-all">
+                    <div class="w-14 h-14 rounded-xl bg-purple-500/10 flex items-center justify-center mb-6">
+                        <iconify-icon icon="mdi:chart-scatter-plot" class="text-3xl text-purple-400"></iconify-icon>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">深度资源与增长驱动</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        深度链接全球达人网络，作为官方认证 TSP/MCN 服务商，凭借海量品牌的实战经验，量身定制“短视频+直播+货架”的全域闭环增长方案。
+                    </p>
+                </div>
+            </div>
         </div>
-        <div class="brands-marquee-wrapper reveal">
+    </section>
+
+    <!-- 4. 市场洞察 (Insights Section) -->
+    <section id="insights" class="py-24 bg-slate-900/30 border-t border-white/5">
+        <div class="max-w-[1440px] mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl font-bold text-white">方法论与市场深度洞察</h2>
+                <div class="w-20 h-1 bg-gradient-gold mx-auto"></div>
+                <p class="text-slate-400 max-w-2xl mx-auto">理解从“Social”到“Content Commerce”的底层逻辑转变</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-12 items-center mb-16">
+                <div class="lg:col-span-5 space-y-6">
+                    <h3 class="text-2xl font-bold text-white">内容电商的跨越式发展</h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        全球电商正在经历从<b>“搜索导向”</b>向<b>“发现导向”</b>的范式转移。决策路径缩短为：内容触发发现 &rarr; 激发购买兴趣 &rarr; 瞬时下单转化。
+                    </p>
+                    <div class="pt-4 text-sm text-slate-400 border-t border-white/10">
+                        TikTok Shop 全球 GMV 增速连续两年超过 <b class="text-amber-500 text-lg">200%</b>。
+                    </div>
+                </div>
+                <div class="lg:col-span-7 bg-slate-900 rounded-2xl p-6 border border-white/5">
+                    <div class="space-y-6">
+                        <div class="grid grid-cols-3 gap-4 text-center text-xs">
+                            <div class="p-3 bg-slate-800 rounded">
+                                <div class="font-bold text-white mb-1">1.0 社交时代</div>
+                                <span class="text-[10px] text-slate-500">关系驱动 · 分享生活</span>
+                            </div>
+                            <div class="p-3 bg-slate-800 rounded">
+                                <div class="font-bold text-white mb-1">2.0 兴趣时代</div>
+                                <span class="text-[10px] text-slate-500">算法驱动 · 货找人</span>
+                            </div>
+                            <div class="p-3 bg-amber-500 text-slate-950 font-bold rounded">
+                                <div class="mb-1">3.0 内容电商时代</div>
+                                <span class="text-[10px] text-slate-900">价值驱动 · 全链路闭环</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 用户消费行为改变 -->
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-7 bg-slate-900 rounded-2xl p-8 border border-white/5 space-y-6">
+                    <h4 class="text-lg font-bold text-white">"TikTok Made Me Buy It" 席卷全球消费文化</h4>
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div class="p-5 bg-slate-950 rounded-xl border border-white/5">
+                            <div class="text-slate-500 text-xs mb-1 uppercase tracking-wider">参与度</div>
+                            <div class="text-xl font-bold text-white mb-2">95+ 分钟</div>
+                            <p class="text-[11px] text-slate-400">平均单日停留时间，比传统平台高出 30%。</p>
+                        </div>
+                        <div class="p-5 bg-slate-950 rounded-xl border border-white/5">
+                            <div class="text-slate-500 text-xs mb-1 uppercase tracking-wider">种草率</div>
+                            <div class="text-xl font-bold text-white mb-2">61%</div>
+                            <p class="text-[11px] text-slate-400">用户在观看完内容后产生即时购买冲动。</p>
+                        </div>
+                        <div class="p-5 bg-slate-950 rounded-xl border border-white/5">
+                            <div class="text-slate-500 text-xs mb-1 uppercase tracking-wider">购买路径</div>
+                            <div class="text-xl font-bold text-white mb-2">-40%</div>
+                            <p class="text-[11px] text-slate-400">消费决策链路时长比传统电商大幅缩短。</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="lg:col-span-5 space-y-6">
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        TikTok 彻底重构了消费决策逻辑。去中心化和强意图触达使品牌能够在瞬间打通用户认知并锁定交易。
+                    </p>
+                    <div class="p-4 bg-white/5 rounded-xl border border-white/10 flex items-center gap-4">
+                        <iconify-icon icon="mdi:tag-multiple" class="text-4xl text-amber-500"></iconify-icon>
+                        <div>
+                            <div class="text-white font-bold text-sm">话题爆发现象</div>
+                            <p class="text-xs text-slate-400 mt-1">相关标签累计全球播放量已成功突破 <b>800 亿次</b>。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. 千川增长公式与全域全链路漏斗 -->
+    <section id="formula" class="py-24 bg-slate-950">
+        <div class="max-w-[1440px] mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl font-bold text-white">千川出海专研增长策略体系</h2>
+                <div class="w-20 h-1 bg-gradient-gold mx-auto"></div>
+                <p class="text-slate-400 max-w-2xl mx-auto">用严谨的数学模型与科学闭环推动海外市场拓展</p>
+            </div>
+
+            <!-- 公式展示 -->
+            <div class="bg-gradient-to-r from-slate-900 to-slate-950 border border-amber-500/20 rounded-3xl p-8 text-center mb-16 shadow-[0_0_30px_rgba(245,158,11,0.05)]">
+                <span class="text-xs text-amber-500 tracking-widest uppercase font-bold">Qianchuan Growth Formula</span>
+                <div class="text-4xl md:text-6xl font-black text-white my-6 tracking-tight">
+                    Sales = <span class="text-amber-500">V</span> × <span class="text-blue-400">CR</span> × <span class="text-purple-400">AOV</span> × <span class="text-emerald-400">RPR</span>
+                </div>
+                
+                <div class="grid md:grid-cols-4 gap-6 text-left pt-6 border-t border-white/10">
+                    <div class="space-y-2">
+                        <div class="text-amber-500 font-bold flex items-center gap-1.5">
+                            <span>V (Vist / 全域流量)</span>
+                        </div>
+                        <p class="text-xs text-slate-400">
+                            <b>策略：</b>AI赋能短视频爆款内容 + 主流平台多渠道买量 + 达人分销。<br/>
+                            <b>目标：</b>极大化进店规模，持续压低 CAC。
+                        </p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="text-blue-400 font-bold flex items-center gap-1.5">
+                            <span>CR (Conversion Rate)</span>
+                        </div>
+                        <p class="text-xs text-slate-400">
+                            <b>策略：</b>专业外籍双语主播带货 + LPO详情页设计 + AI智能客服响应。<br/>
+                            <b>目标：</b>打通交易临门一脚，拉升即时购买转化。
+                        </p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="text-purple-400 font-bold flex items-center gap-1.5">
+                            <span>AOV (Average Order Value)</span>
+                        </div>
+                        <p class="text-xs text-slate-400">
+                            <b>策略：</b>算法相关性捆绑搭售 + 本地化高吸引力买赠策略 + 套装定价。<br/>
+                            <b>目标：</b>提升单次加购深度，优化产品成交客单价。
+                        </p>
+                    </div>
+                    <div class="space-y-2">
+                        <div class="text-emerald-400 font-bold flex items-center gap-1.5">
+                            <span>RPR (Repurchase Rate)</span>
+                        </div>
+                        <p class="text-xs text-slate-400">
+                            <b>策略：</b>海外多社群闭环运营（Discord/WhatsApp）+ CRM再营销。<br/>
+                            <b>目标：</b>将公域首单流量有效转化为高留存品牌资产。
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 三位一体增长引擎与漏斗 -->
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <h3 class="text-3xl font-bold text-white leading-snug">
+                        构建以用户为核心的 <br/>
+                        <span class="text-gradient-gold">内容+直播+货架</span> 增长闭环
+                    </h3>
+                    <div class="space-y-3 pt-2">
+                        <div class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-amber-500/10 text-amber-500 font-bold text-xs flex items-center justify-center shrink-0 mt-1">1</span>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">内容 (Short Video) &mdash; 增长的“触角”</h4>
+                                <p class="text-xs text-slate-500 mt-1">依托 AI 创意生成与海外团队，生产高本土化转化的视频素材。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-blue-500/10 text-blue-400 font-bold text-xs flex items-center justify-center shrink-0 mt-1">2</span>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">直播 (Livestream) &mdash; 增长的“心脏”</h4>
+                                <p class="text-xs text-slate-500 mt-1">通过专业场控与本土双语主播，在短时间内完成高效成交拉动波峰。</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-3">
+                            <span class="w-6 h-6 rounded-full bg-purple-500/10 text-purple-400 font-bold text-xs flex items-center justify-center shrink-0 mt-1">3</span>
+                            <div>
+                                <h4 class="text-sm font-bold text-white">货架 (Shelf/Store) &mdash; 增长的“底盘”</h4>
+                                <p class="text-xs text-slate-500 mt-1">优化 TikTok Shop 货架展示与搜索，确保在非直播时段具备稳定成交。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-slate-900 rounded-3xl p-8 border border-white/5 space-y-6">
+                    <h4 class="font-bold text-white">全域全链路漏斗闭环 (Data Funnel)</h4>
+                    <div class="space-y-4">
+                        <div class="relative bg-slate-950 p-4 rounded-xl border-l-4 border-amber-500">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-bold text-white">曝光层 (Awareness)</span>
+                            </div>
+                            <p class="text-xs text-slate-400">爆款短视频引流 + KOL/KOC种草达人矩阵 + 商业化投流。</p>
+                        </div>
+                        <div class="relative bg-slate-950 p-4 rounded-xl border-l-4 border-blue-400">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-bold text-white">交互层 (Engagement)</span>
+                            </div>
+                            <p class="text-xs text-slate-400">本土双语主播常态自播 + 实时精准场控。加速决策，瞬时爆发。</p>
+                        </div>
+                        <div class="relative bg-slate-950 p-4 rounded-xl border-l-4 border-purple-400">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-bold text-white">转化层 (Conversion)</span>
+                            </div>
+                            <p class="text-xs text-slate-400">多商品详情页优化（LPO）+ 店铺货架承接搜索，保障常态动销。</p>
+                        </div>
+                        <div class="relative bg-slate-950 p-4 rounded-xl border-l-4 border-emerald-400">
+                            <div class="flex justify-between items-center mb-1">
+                                <span class="text-sm font-bold text-white">留存层 (Retention)</span>
+                            </div>
+                            <p class="text-xs text-slate-400">社群激活（Discord/WhatsApp）+ 会员体系，流量沉淀为高LTV资产。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. 核心业务与服务能力 -->
+    <section id="business" class="py-24 bg-slate-900/30 border-t border-white/5">
+        <div class="max-w-[1440px] mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl font-bold text-white">核心业务及精细化服务方案</h2>
+                <div class="w-20 h-1 bg-gradient-gold mx-auto"></div>
+                <p class="text-slate-400">全栈式支持，赋能合作品牌精准决策，用数据技术指导出海</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- 业务一 -->
+                <div class="p-8 rounded-3xl bg-slate-900 border border-white/5 space-y-6">
+                    <div class="w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center">
+                        <iconify-icon icon="mdi:rocket-launch-outline" class="text-3xl text-amber-500"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">TikTok Shop 0-1 基础落地</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        海外多站点合规开店入驻、资质审核、店铺搭建、类目开通。解决准入难题，绿色通道审核时效缩短 50%。
+                    </p>
+                </div>
+
+                <!-- 业务二 -->
+                <div class="p-8 rounded-3xl bg-slate-900 border border-white/5 space-y-6">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center">
+                        <iconify-icon icon="mdi:store-cog" class="text-3xl text-blue-400"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">本土化电商全域代运营</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        智能定价体系与A/B Testing模型、SEO与库存精细管理、FBT物流履约闭环以及7×24小时多语种母语本土客服。
+                    </p>
+                </div>
+
+                <!-- 业务三 -->
+                <div class="p-8 rounded-3xl bg-slate-900 border border-white/5 space-y-6">
+                    <div class="w-14 h-14 rounded-2xl bg-purple-500/10 flex items-center justify-center">
+                        <iconify-icon icon="mdi:video-vintage" class="text-3xl text-purple-400"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">短视频爆款内容策划</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        本土编导脚本（拒绝机翻），自建海外拍摄基地邀请外籍特演，配合 AI 后期快速裂变高转化变体素材。
+                    </p>
+                </div>
+
+                <!-- 业务四 -->
+                <div class="p-8 rounded-3xl bg-slate-900 border border-white/5 space-y-6">
+                    <div class="w-14 h-14 rounded-2xl bg-red-500/10 flex items-center justify-center">
+                        <iconify-icon icon="mdi:microphone" class="text-3xl text-red-400"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">常态化本土直播服务</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        500+ 本土全职主播，搭配美妆/服饰等定制实景直播间。运用 AI 智慧控场，引爆强互动瞬时成交。
+                    </p>
+                </div>
+
+                <!-- 业务五 -->
+                <div class="p-8 rounded-3xl bg-slate-900 border border-white/5 space-y-6">
+                    <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 flex items-center justify-center">
+                        <iconify-icon icon="mdi:chart-scatter-plot" class="text-3xl text-emerald-400"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">精准流量投放与投产管理</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        依托官方核心代理及千万级用户标签库，精准锁定高意向消费者。自研算法实现 ROI 秒级止损与自动扩量。
+                    </p>
+                </div>
+
+                <!-- 业务六 -->
+                <div class="p-8 rounded-3xl bg-slate-900 border border-white/5 space-y-6">
+                    <div class="w-14 h-14 rounded-2xl bg-blue-500/10 flex items-center justify-center">
+                        <iconify-icon icon="mdi:shield-lock" class="text-3xl text-blue-400"></iconify-icon>
+                    </div>
+                    <h3 class="text-xl font-bold text-white">合规风控与长效保障</h3>
+                    <p class="text-sm text-slate-400 leading-relaxed">
+                        全流程平台合规风控、知识产权保护、账号安全运维以及跨境资金对接，坚决规避封店风险，保障出海稳定长久。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. AI智能与自研AI赋能体系 (Images applied) -->
+    <section id="ai" class="py-24 bg-slate-950">
+        <div class="max-w-[1440px] mx-auto px-6">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 space-y-8">
+                    <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm font-bold tracking-wide">
+                        <iconify-icon icon="mdi:cpu-32-bit"></iconify-icon>
+                        出海智脑 · 自研 AI 大模型体系
+                    </div>
+                    <h2 class="text-4xl font-bold text-white">自研大模型 + 投放 SaaS</h2>
+                    <p class="text-slate-400 text-base leading-relaxed">
+                        基于千万级出海垂直电商数据训练，打造专属“数字大脑”。实现市场预判、多语种语义理解及秒级策略生成。
+                    </p>
+                    
+                    <!-- 原图嵌入: aidata.png -->
+                    <img src="aidata.png" alt="AI Data Strategy" class="w-full rounded-2xl border border-white/5 shadow-[0_0_30px_rgba(59,130,246,0.1)] mb-6">
+                </div>
+
+                <div class="lg:col-span-6 bg-slate-900 rounded-3xl p-8 border border-white/5 space-y-6">
+                    <h3 class="text-2xl font-bold text-white flex items-center gap-2 border-b border-white/5 pb-4">
+                        <iconify-icon icon="mdi:robot-mower" class="text-amber-500"></iconify-icon>
+                        多智能体 (AI Agent) 闭环运营
+                    </h3>
+                    <p class="text-xs text-slate-400">
+                        打造永不疲劳的“超级团队”，从“人工管店”转向“智管店”，运营误差率断崖式降低 90%。
+                    </p>
+                    
+                    <div class="space-y-4 pt-4">
+                        <div class="flex gap-4 p-4 bg-slate-950 rounded-xl border border-white/5">
+                            <iconify-icon icon="mdi:voice" class="text-3xl text-amber-500 mt-1"></iconify-icon>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">AI 自动场控</h4>
+                                <p class="text-xs text-slate-400 mt-1">根据直播间热度自动调整发券节奏、话术提示与气氛引导。</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 p-4 bg-slate-950 rounded-xl border border-white/5">
+                            <iconify-icon icon="mdi:robot" class="text-3xl text-blue-400 mt-1"></iconify-icon>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">AI 智能客服</h4>
+                                <p class="text-xs text-slate-400 mt-1">具备情感理解能力，全天候独立处理 95% 以上售前与售后咨询。</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 p-4 bg-slate-950 rounded-xl border border-white/5">
+                            <iconify-icon icon="mdi:shield-alert" class="text-3xl text-red-400 mt-1"></iconify-icon>
+                            <div>
+                                <h4 class="font-bold text-white text-sm">违规自提醒防封</h4>
+                                <p class="text-xs text-slate-400 mt-1">实时扫描直播画面与话术，毫秒级预判风控点，规避断流风险。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. 达人资源 (Images applied) -->
+    <section id="kol" class="py-24 bg-slate-900/30 border-t border-white/5">
+        <div class="max-w-[1440px] mx-auto px-6">
+            <div class="grid lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 space-y-6">
+                    <h2 class="text-4xl font-bold text-white">20万+ 全球垂类达人私库</h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        非通用中介资源，均为深度合作签约红人。通过 AI 画像精准分析，秒级筛选出与品牌调性最契合的带货人选。深度触达英、法、德、泰、印尼等多语种核⼼受众。
+                    </p>
+                    
+                    <!-- 融合提供的达人头像 profile.avif -->
+                    <div class="flex items-center gap-6 pt-4 border-t border-white/5 mt-6">
+                        <div class="flex -space-x-4">
+                            <img class="w-12 h-12 rounded-full border-2 border-slate-950 bg-slate-800 object-cover" src="profile1.avif" alt="Influencer Avatar">
+                            <img class="w-12 h-12 rounded-full border-2 border-slate-950 bg-slate-800 object-cover" src="profile2.avif" alt="Influencer Avatar">
+                            <img class="w-12 h-12 rounded-full border-2 border-slate-950 bg-slate-800 object-cover" src="profile3.avif" alt="Influencer Avatar">
+                            <div class="w-12 h-12 rounded-full bg-amber-500 border-2 border-slate-950 flex items-center justify-center text-xs font-bold text-slate-900">+99k</div>
+                        </div>
+                        <div class="text-slate-400 text-xs">
+                            覆盖全球 150+ 国家，20个垂直领域，强力引爆品牌海外声量。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 bg-slate-900 rounded-3xl p-8 border border-white/5 space-y-6 relative overflow-hidden">
+                    <!-- 原图嵌入: ai.png -->
+                    <img src="ai.png" alt="AI Network Matching" class="w-full rounded-2xl border border-white/5 shadow-[0_0_30px_rgba(245,158,11,0.05)] relative z-10">
+                    
+                    <h3 class="text-xl font-bold text-white relative z-10">五大核心带货实战赛道</h3>
+                    <div class="grid md:grid-cols-5 gap-3 relative z-10">
+                        <div class="p-3 bg-slate-950 rounded-xl text-center border border-white/5"><div class="text-xs font-bold text-slate-300">3C极客</div></div>
+                        <div class="p-3 bg-slate-950 rounded-xl text-center border border-white/5"><div class="text-xs font-bold text-slate-300">美妆个护</div></div>
+                        <div class="p-3 bg-slate-950 rounded-xl text-center border border-white/5"><div class="text-xs font-bold text-slate-300">服饰时尚</div></div>
+                        <div class="p-3 bg-slate-950 rounded-xl text-center border border-white/5"><div class="text-xs font-bold text-slate-300">智能家电</div></div>
+                        <div class="p-3 bg-slate-950 rounded-xl text-center border border-white/5"><div class="text-xs font-bold text-slate-300">工业机械</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 9. 深度合作案例 -->
+    <section id="case" class="py-24 bg-slate-950">
+        <div class="max-w-[1440px] mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl font-bold text-white">卓越出海实战案例</h2>
+                <div class="w-20 h-1 bg-gradient-gold mx-auto"></div>
+                <p class="text-slate-400">打破传播壁垒，用数据证实爆发式增长的确定性</p>
+            </div>
+
+            <!-- 主案例：联手 Temu (详细) -->
+            <div class="bg-slate-900 rounded-3xl p-8 border border-amber-500/20 mb-12 shadow-[0_0_30px_rgba(245,158,11,0.05)]">
+                <div class="flex flex-col lg:flex-row gap-8 items-center">
+                    <div class="lg:w-1/2 space-y-6">
+                        <div class="flex items-center gap-2">
+                            <span class="text-xs px-3 py-1 bg-amber-500 text-slate-950 font-bold rounded">标杆战役</span>
+                            <span class="text-xs text-slate-500">TikTok全域带货闭环构建</span>
+                        </div>
+                        <h3 class="text-3xl font-bold text-white">携手 Temu 跨境平台，实现商家冷启动爆发</h3>
+                        
+                        <div class="space-y-3 text-sm text-slate-400">
+                            <p>为入驻商家提供一站式运营解决方案，搭建“短视频引流 + 直播转化 + 商业投流 + 达人分销”矩阵。量身定制内容脚本与外籍主播组建，快速破局欧美及东南亚市场。</p>
+                        </div>
+
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-4 border-t border-white/5">
+                            <div>
+                                <div class="text-xl font-bold text-amber-500">60+ 商家</div>
+                                <div class="text-[10px] text-slate-500">成功启动闭环</div>
+                            </div>
+                            <div>
+                                <div class="text-xl font-bold text-white">800万+</div>
+                                <div class="text-[10px] text-slate-500">最高单月播放</div>
+                            </div>
+                            <div>
+                                <div class="text-xl font-bold text-white">100万+</div>
+                                <div class="text-[10px] text-slate-500">单品最高成交(元)</div>
+                            </div>
+                            <div>
+                                <div class="text-xl font-bold text-emerald-400">1:4.5 稳超</div>
+                                <div class="text-[10px] text-slate-500">整体广告投产比</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="lg:w-1/2 w-full space-y-4">
+                        <!-- Echarts 图表展示 -->
+                        <div id="caseChart" class="w-full h-[320px] rounded-2xl bg-slate-950 p-4 border border-white/5"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 其他案例网格 -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div class="p-6 rounded-2xl bg-slate-900 border border-white/5 space-y-4">
+                    <span class="text-xs font-bold text-amber-500 uppercase">案例二：速卖通</span>
+                    <h4 class="font-bold text-white">赋能国货品牌出海</h4>
+                    <p class="text-xs text-slate-400">助力 40+ 品牌出海，单场直播大促 GMV 一举突破 500 万大关，形成长尾销售。</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-slate-900 border border-white/5 space-y-4">
+                    <span class="text-xs font-bold text-amber-500 uppercase">案例三：利欧集团</span>
+                    <h4 class="font-bold text-white">打破 B 端传播壁垒</h4>
+                    <p class="text-xs text-slate-400">重塑工业品内容营销，借助趣味短视频引流，强势促成 1.2 亿元高客单价出海订单。</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-slate-900 border border-white/5 space-y-4">
+                    <span class="text-xs font-bold text-amber-500 uppercase">案例四：阿里国际站</span>
+                    <h4 class="font-bold text-white">助力制造全案出海</h4>
+                    <p class="text-xs text-slate-400">提供 TikTok 定制全案营销，将传统 B2B 厂家有效对接海外需求受众，打破代工瓶颈。</p>
+                </div>
+                <div class="p-6 rounded-2xl bg-slate-900 border border-white/5 space-y-4">
+                    <span class="text-xs font-bold text-amber-500 uppercase">案例五：SHEIN</span>
+                    <h4 class="font-bold text-white">抢占新兴市场增量</h4>
+                    <p class="text-xs text-slate-400">携手出海巨头攻坚拉美、中东市场，自研 AI 精准测投，令全渠道获客成本剧降 32%。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 10. 合作品牌墙 (Brands Marquee - Images Applied) -->
+    <section class="py-16 bg-slate-950 border-t border-white/5 overflow-hidden">
+        <div class="max-w-[1440px] mx-auto px-6 mb-10 text-center">
+            <h2 class="text-2xl font-bold text-slate-300">信任我们的卓越生态合作伙伴</h2>
+            <p class="text-xs text-slate-500 mt-2">已服务出海品牌 800+，从初创品牌到全球头牌，无界跨越文化壁垒</p>
+        </div>
+        
+        <div class="brands-marquee-wrapper">
+            <!-- Marquee Content (Duplicated for infinite scroll effect) -->
             <div class="brands-marquee">
                 <!-- Group 1 -->
-                <div class="brand-item"><img src="flyco.bfe1036e.png" alt="Flyco" class="brand-logo"><span>飞科</span></div>
-                <div class="brand-item"><img src="gag.69e5ff3b.png" alt="GAG" class="brand-logo"><span>广汽集团</span></div>
-                <div class="brand-item"><img src="hager.45134304.png" alt="Hager" class="brand-logo"><span>海格</span></div>
-                <div class="brand-item"><img src="lg.7cb94ec0.png" alt="LG" class="brand-logo"><span>LG</span></div>
-                <div class="brand-item"><img src="midea.490eee87.png" alt="Midea" class="brand-logo"><span>美的</span></div>
-                <div class="brand-item"><img src="mihoyo.892fbf2d.png" alt="Mihoyo" class="brand-logo"><span>米哈游</span></div>
-                <div class="brand-item"><img src="philips.da1d93a2.png" alt="Philips" class="brand-logo"><span>飞利浦</span></div>
-                <div class="brand-item"><img src="river.4ee7d65e.png" alt="River" class="brand-logo"><span>汇娱互动</span></div>
-                <div class="brand-item"><img src="supor.e2a6e5d7.png" alt="Supor" class="brand-logo"><span>苏泊尔</span></div>
-                <div class="brand-item"><img src="tencent.b4bb2063.png" alt="Tencent" class="brand-logo"><span>腾讯</span></div>
-                <div class="brand-item"><img src="tiktok.5150c0af.png" alt="TikTok" class="brand-logo"><span>TikTok</span></div>
-                <div class="brand-item"><img src="ulike.e219caa6.png" alt="ULike" class="brand-logo"><span>ULike</span></div>
-                <div class="brand-item"><img src="xiaomi.8436a248.png" alt="Xiaomi" class="brand-logo"><span>小米</span></div>
-                <!-- Group 2 (Duplicate for continuous scroll) -->
-                <div class="brand-item"><img src="flyco.bfe1036e.png" alt="Flyco" class="brand-logo"><span>飞科</span></div>
-                <div class="brand-item"><img src="gag.69e5ff3b.png" alt="GAG" class="brand-logo"><span>广汽集团</span></div>
-                <div class="brand-item"><img src="hager.45134304.png" alt="Hager" class="brand-logo"><span>海格</span></div>
-                <div class="brand-item"><img src="lg.7cb94ec0.png" alt="LG" class="brand-logo"><span>LG</span></div>
-                <div class="brand-item"><img src="midea.490eee87.png" alt="Midea" class="brand-logo"><span>美的</span></div>
-                <div class="brand-item"><img src="mihoyo.892fbf2d.png" alt="Mihoyo" class="brand-logo"><span>米哈游</span></div>
-                <div class="brand-item"><img src="philips.da1d93a2.png" alt="Philips" class="brand-logo"><span>飞利浦</span></div>
-                <div class="brand-item"><img src="river.4ee7d65e.png" alt="River" class="brand-logo"><span>汇娱互动</span></div>
-                <div class="brand-item"><img src="supor.e2a6e5d7.png" alt="Supor" class="brand-logo"><span>苏泊尔</span></div>
-                <div class="brand-item"><img src="tencent.b4bb2063.png" alt="Tencent" class="brand-logo"><span>腾讯</span></div>
-                <div class="brand-item"><img src="tiktok.5150c0af.png" alt="TikTok" class="brand-logo"><span>TikTok</span></div>
-                <div class="brand-item"><img src="ulike.e219caa6.png" alt="ULike" class="brand-logo"><span>ULike</span></div>
-                <div class="brand-item"><img src="xiaomi.8436a248.png" alt="Xiaomi" class="brand-logo"><span>小米</span></div>
+                <div class="brand-item"><img src="tiktok.5150c0af.png" alt="TikTok"><span>TikTok for Business</span></div>
+                <div class="brand-item"><img src="tencent.b4bb2063.png" alt="Tencent"><span>腾讯出海</span></div>
+                <div class="brand-item"><img src="mihoyo.892fbf2d.png" alt="Mihoyo"><span>米哈游</span></div>
+                <div class="brand-item"><img src="xiaomi.8436a248.png" alt="Xiaomi"><span>小米</span></div>
+                <div class="brand-item"><img src="midea.490eee87.png" alt="Midea"><span>美的集团</span></div>
+                <div class="brand-item"><img src="lg.7cb94ec0.png" alt="LG"><span>LG电子</span></div>
+                <div class="brand-item"><img src="philips.da1d93a2.png" alt="Philips"><span>飞利浦</span></div>
+                <div class="brand-item"><img src="flyco.bfe1036e.png" alt="Flyco"><span>飞科电器</span></div>
+                <div class="brand-item"><img src="gag.69e5ff3b.png" alt="GAG"><span>广汽集团</span></div>
+                <div class="brand-item"><img src="supor.e2a6e5d7.png" alt="Supor"><span>苏泊尔</span></div>
+                <div class="brand-item"><img src="ulike.e219caa6.png" alt="ULike"><span>ULike</span></div>
+                <div class="brand-item"><img src="hager.45134304.png" alt="Hager"><span>海格</span></div>
+                <div class="brand-item"><img src="river.4ee7d65e.png" alt="River"><span>汇娱互动</span></div>
+                
+                <!-- Group 2 (Duplicate for continuous loop) -->
+                <div class="brand-item"><img src="tiktok.5150c0af.png" alt="TikTok"><span>TikTok for Business</span></div>
+                <div class="brand-item"><img src="tencent.b4bb2063.png" alt="Tencent"><span>腾讯出海</span></div>
+                <div class="brand-item"><img src="mihoyo.892fbf2d.png" alt="Mihoyo"><span>米哈游</span></div>
+                <div class="brand-item"><img src="xiaomi.8436a248.png" alt="Xiaomi"><span>小米</span></div>
+                <div class="brand-item"><img src="midea.490eee87.png" alt="Midea"><span>美的集团</span></div>
+                <div class="brand-item"><img src="lg.7cb94ec0.png" alt="LG"><span>LG电子</span></div>
+                <div class="brand-item"><img src="philips.da1d93a2.png" alt="Philips"><span>飞利浦</span></div>
+                <div class="brand-item"><img src="flyco.bfe1036e.png" alt="Flyco"><span>飞科电器</span></div>
+                <div class="brand-item"><img src="gag.69e5ff3b.png" alt="GAG"><span>广汽集团</span></div>
+                <div class="brand-item"><img src="supor.e2a6e5d7.png" alt="Supor"><span>苏泊尔</span></div>
+                <div class="brand-item"><img src="ulike.e219caa6.png" alt="ULike"><span>ULike</span></div>
+                <div class="brand-item"><img src="hager.45134304.png" alt="Hager"><span>海格</span></div>
+                <div class="brand-item"><img src="river.4ee7d65e.png" alt="River"><span>汇娱互动</span></div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-        <div class="container reveal">
-            <div class="contact-card">
-                <div class="contact-header">
-                    <h2>开启北美增长之旅</h2>
-                    <p>如果您有 TikTok 美区合作意向，请填写表单，我们的出海专家将尽快联系您。</p>
+    <!-- 11. 标准化合作服务流程 SOP -->
+    <section id="process" class="py-24 bg-slate-900/30 border-t border-white/5">
+        <div class="max-w-[1440px] mx-auto px-6">
+            <div class="text-center mb-16 space-y-4">
+                <h2 class="text-4xl font-bold text-white">XTIDE 标准化出海 SOP</h2>
+                <div class="w-20 h-1 bg-gradient-gold mx-auto"></div>
+                <p class="text-slate-400">从0到1的严密闭环，保障您的项目高效、透明落地</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 lg:grid-cols-6 gap-6 relative">
+                <!-- 步骤 1-6 保持简洁设计 -->
+                <div class="p-6 bg-slate-900 rounded-2xl border border-white/5">
+                    <div class="text-amber-500 font-black text-2xl mb-2 opacity-50">01</div>
+                    <h4 class="text-white font-bold mb-1">深度咨询</h4>
+                    <p class="text-xs text-slate-500">现状诊断与市场评估</p>
                 </div>
-                <form class="contact-form">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <input type="text" placeholder="公司名称 *" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" placeholder="您的职位 *" required>
-                        </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="form-group">
-                            <input type="text" placeholder="您的姓名 *" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="tel" placeholder="手机号码 *" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <textarea rows="4" placeholder="请简述您的产品类目与出海需求..."></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary submit-btn">提交需求</button>
-                </form>
+                <div class="p-6 bg-slate-900 rounded-2xl border border-white/5">
+                    <div class="text-amber-500 font-black text-2xl mb-2 opacity-50">02</div>
+                    <h4 class="text-white font-bold mb-1">策略方案</h4>
+                    <p class="text-xs text-slate-500">制定全案规划与ROI测算</p>
+                </div>
+                <div class="p-6 bg-slate-900 rounded-2xl border border-white/5">
+                    <div class="text-amber-500 font-black text-2xl mb-2 opacity-50">03</div>
+                    <h4 class="text-white font-bold mb-1">合同签署</h4>
+                    <p class="text-xs text-slate-500">法务审核与建制启动</p>
+                </div>
+                <div class="p-6 bg-slate-900 rounded-2xl border border-white/5">
+                    <div class="text-amber-500 font-black text-2xl mb-2 opacity-50">04</div>
+                    <h4 class="text-white font-bold mb-1">项目启动</h4>
+                    <p class="text-xs text-slate-500">账号开通与本土内容准备</p>
+                </div>
+                <div class="p-6 bg-slate-900 rounded-2xl border border-white/5">
+                    <div class="text-amber-500 font-black text-2xl mb-2 opacity-50">05</div>
+                    <h4 class="text-white font-bold mb-1">运营交付</h4>
+                    <p class="text-xs text-slate-500">AI投流与达人矩阵大推</p>
+                </div>
+                <div class="p-6 bg-slate-900 rounded-2xl border border-white/5">
+                    <div class="text-amber-500 font-black text-2xl mb-2 opacity-50">06</div>
+                    <h4 class="text-white font-bold mb-1">战略复盘</h4>
+                    <p class="text-xs text-slate-500">全维数据检阅与深度优化</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-brand">
-                    <span class="logo-text" style="font-size: 24px; font-weight: 600; color: var(--text-main); display: block; margin-bottom: 12px;">千川出海</span>
-                    <p style="font-size: 14px; color: var(--text-secondary); line-height: 1.6;">广州千川出海科技有限责任公司<br>全球头牌 TikTok 品牌聚合商</p>
-                </div>
-                <div class="footer-links">
-                    <div class="footer-col">
-                        <h4 style="font-size: 14px; font-weight: 600; color: var(--text-main); margin-bottom: 16px;">服务项目</h4>
-                        <a href="#" style="display: block; margin-bottom: 12px; color: var(--text-secondary); text-decoration: none;">投流与物流服务</a>
-                        <a href="#" style="display: block; margin-bottom: 12px; color: var(--text-secondary); text-decoration: none;">短视频与切片</a>
-                        <a href="#" style="display: block; margin-bottom: 12px; color: var(--text-secondary); text-decoration: none;">直播 DP 代运营</a>
-                        <a href="#" style="display: block; margin-bottom: 12px; color: var(--text-secondary); text-decoration: none;">达人精准建联</a>
+    <!-- 12. 底部联系 / Footer -->
+    <footer id="contact" class="bg-slate-900 pt-20 pb-10 border-t border-white/5">
+        <div class="max-w-[1440px] mx-auto px-6">
+            <div class="grid lg:grid-cols-12 gap-12 mb-16">
+                <!-- 公司愿景 -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="flex items-center gap-3">
+                        <div class="w-10 h-10 bg-logo rounded-lg flex items-center justify-center shadow-lg p-1">
+                            <img src="favicon.ico" alt="Favicon" class="w-full h-full object-contain">
+                        </div>
+                        <span class="text-2xl font-bold tracking-tight text-white">XTIDE 千川出海</span>
                     </div>
-                    <div class="footer-col" style="max-width: 300px;">
-                        <h4 style="font-size: 14px; font-weight: 600; color: var(--text-main); margin-bottom: 16px;">全球办公室</h4>
-                        
-                        <p style="color:var(--text-main); font-weight:600; margin-bottom:4px; font-size: 13px;">香港基地：</p>
-                        <p style="margin-bottom:12px; color: var(--text-secondary); font-size: 13px; line-height: 1.4;">香港九龍新蒲崗景福街99號啟德工廠大廈二期8樓</p>
-                        
-                        <p style="color:var(--text-main); font-weight:600; margin-bottom:4px; font-size: 13px;">美国基地：</p>
-                        <p style="margin-bottom:12px; color: var(--text-secondary); font-size: 13px; line-height: 1.4;">13532 moore st cerritos ca, 90703</p>
-                        
-                        <p style="color:var(--text-main); font-weight:600; margin-bottom:4px; font-size: 13px;">广州基地：</p>
-                        <p style="margin-bottom:16px; color: var(--text-secondary); font-size: 13px; line-height: 1.4;">广东省广州市南沙区南沙街道工业五路5号2栋</p>
-                        
-                        <p style="color:var(--text-main); font-weight:600; margin-bottom:4px; font-size: 13px;">深圳基地：</p>
-                        <p style="margin-bottom:16px; color: var(--text-secondary); font-size: 13px; line-height: 1.4;">广东省深圳市福田区金田路安联大厦B区35层</p>
-                        
-                        <a href="mailto:contact@xtide.cn" style="display:inline-block; font-weight: 600; color: var(--primary-color); text-decoration: none; font-size: 14px;">contact@xtide.cn</a>
+                    <p class="text-slate-400 text-sm max-w-md leading-relaxed">
+                        在内容电商的新纪元，我们期待成为您最坚实的全球增长伙伴。从中国出发，聚合全球红人势能，跨越文化沟壑。
+                    </p>
+                </div>
+
+                <!-- 跨国服务基地 -->
+                <div class="lg:col-span-4 space-y-4">
+                    <h4 class="text-white font-bold text-base">全球服务中心与基地</h4>
+                    <ul class="space-y-3 text-xs text-slate-400">
+                        <li class="flex items-start gap-2">
+                            <iconify-icon icon="mdi:map-marker" class="text-amber-500 mt-0.5 shrink-0"></iconify-icon>
+                            <span><b>广州中心 (数字化)：</b>南沙区南沙街道工业五路5号2栋</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <iconify-icon icon="mdi:map-marker" class="text-blue-400 mt-0.5 shrink-0"></iconify-icon>
+                            <span><b>纽约本地运营：</b>535, 8th Ave, New York, USA</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <iconify-icon icon="mdi:map-marker" class="text-slate-500 mt-0.5 shrink-0"></iconify-icon>
+                            <span><b>香港基地：</b>九龍新蒲崗景福街99號啟德工廠大廈二期8樓</span>
+                        </li>
+                        <li class="flex items-start gap-2">
+                            <iconify-icon icon="mdi:map-marker" class="text-slate-500 mt-0.5 shrink-0"></iconify-icon>
+                            <span><b>深圳中心：</b>福田区金田路安联大厦B区35层</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 联系入口 -->
+                <div class="lg:col-span-3 space-y-4">
+                    <h4 class="text-white font-bold text-base">联系方式</h4>
+                    <div class="p-4 rounded-xl bg-slate-950 border border-white/5 space-y-3 text-xs">
+                        <div class="flex items-center gap-2 text-slate-400">
+                            <iconify-icon icon="mdi:email-outline" class="text-amber-500 text-lg"></iconify-icon>
+                            <span><b>官方商务：</b>contact@xtide.cn</span>
+                        </div>
+                        <a href="mailto:contact@xtide.cn" class="block w-full py-2 bg-gradient-gold text-slate-950 text-center font-bold rounded hover:opacity-90 transition-opacity">
+                            向我们写信
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom" style="text-align: center; padding-top: 20px;">
-                <p style="color: var(--text-secondary); font-size: 12px;">Copyright © 2026 广州千川出海科技有限责任公司. 保留所有权利.</p>
+
+            <div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-slate-500 text-xs gap-4">
+                <p>&copy; 2026 XTIDE 千川出海 QianChuan Global. 保留所有权。</p>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+        // 移动端菜单切换
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobileMenu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Temu 商家增量图表初始化 (ECharts)
+        const chartDom = document.getElementById('caseChart');
+        if (chartDom) {
+            const myChart = echarts.init(chartDom, 'dark');
+            const option = {
+                backgroundColor: 'transparent',
+                title: {
+                    text: 'Temu 试点商家多阶段平均单月 GMV 增量情况 (单位: 万元)',
+                    left: 'center',
+                    textStyle: { color: '#94a3b8', fontSize: 11, fontWeight: 'normal' }
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                grid: { left: '8%', right: '8%', bottom: '10%', top: '22%', containLabel: true },
+                xAxis: {
+                    type: 'category',
+                    data: ['冷启动', '达人测款', '直播波峰', '全域爆发'],
+                    axisLine: { lineStyle: { color: '#334155' } },
+                    axisLabel: { textStyle: { color: '#94a3b8', fontSize: 10 } }
+                },
+                yAxis: {
+                    type: 'value',
+                    splitLine: { lineStyle: { color: '#1e293b' } },
+                    axisLine: { lineStyle: { color: '#334155' } },
+                    axisLabel: { textStyle: { color: '#94a3b8', fontSize: 10 } }
+                },
+                series: [{
+                    name: '平均销售额 GMV',
+                    data: [15, 38, 65, 120],
+                    type: 'line',
+                    smooth: true,
+                    symbol: 'circle',
+                    symbolSize: 8,
+                    itemStyle: { color: '#f59e0b' },
+                    lineStyle: { width: 3, color: '#f59e0b' },
+                    areaStyle: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+                            { offset: 0, color: 'rgba(245, 158, 11, 0.3)' },
+                            { offset: 1, color: 'rgba(245, 158, 11, 0)' }
+                        ])
+                    }
+                }]
+            };
+            myChart.setOption(option);
+
+            // 响应式图表更新
+            window.addEventListener('resize', function() {
+                myChart.resize();
+            });
+        }
+    </script>
+    <script src="locales.js"></script>
 </body>
 </html>
