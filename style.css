@@ -547,7 +547,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Brands Section */
 .brands-section {
     padding: 120px 0;
-    background: #ffffff;
+    /* background: #ffffff; */
     overflow: hidden;
 }
 
@@ -573,11 +573,11 @@ h1, h2, h3, h4, h5, h6 {
 }
 .brands-marquee-wrapper::before {
     left: 0;
-    background: linear-gradient(to right, #ffffff, transparent);
+    /* background: linear-gradient(to right, #ffffff, transparent); */
 }
 .brands-marquee-wrapper::after {
     right: 0;
-    background: linear-gradient(to left, #ffffff, transparent);
+    /* background: linear-gradient(to left, #ffffff, transparent); */
 }
 
 .brands-marquee {
@@ -603,7 +603,7 @@ h1, h2, h3, h4, h5, h6 {
     gap: 16px;
     font-size: 24px;
     font-weight: 600;
-    color: var(--text-secondary);
+    /* color: var(--text-secondary); */
     transition: color 0.3s;
     cursor: default;
     white-space: nowrap;
@@ -618,7 +618,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .brand-item:hover {
-    color: var(--text-main);
+    /* color: var(--text-main); */
 }
 
 /* Contact Section */
