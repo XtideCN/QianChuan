@@ -4,7 +4,9 @@
     originalDomain: 'xtide.cn',
     newDomain: 'elite-media.us',
     originalBrand: 'xtide',
-    newBrand: 'elite-media'
+    newBrand: 'elite-media',
+    originalEmailDomain: 'xtide.cn',
+    newEmailDomain: 'elite-media.us'
   };
 
   // 获取当前域名（不区分大小写）
@@ -16,14 +18,35 @@
            currentHost === CONFIG.newDomain;
   }
 
+  // 文本替换函数，优先处理完整的域名
+  function replaceText(text) {
+    let result = text;
+    
+    // 优先替换完整的邮箱域名和网站域名
+    result = result.replace(
+      new RegExp(CONFIG.originalEmailDomain.replace('.', '\\.'), 'gi'),
+      CONFIG.newEmailDomain
+    );
+    
+    result = result.replace(
+      new RegExp(CONFIG.originalDomain.replace('.', '\\.'), 'gi'),
+      CONFIG.newDomain
+    );
+    
+    // 然后替换品牌名
+    result = result.replace(
+      new RegExp(CONFIG.originalBrand, 'gi'),
+      CONFIG.newBrand
+    );
+    
+    return result;
+  }
+
   // 替换文本内容（不区分大小写的正则表达式）
   function replaceTextInNode(node) {
     if (node.nodeType === Node.TEXT_NODE) {
       const originalText = node.nodeValue;
-      const newText = originalText.replace(
-        new RegExp(CONFIG.originalBrand, 'gi'),
-        CONFIG.newBrand
-      );
+      const newText = replaceText(originalText);
       if (originalText !== newText) {
         node.nodeValue = newText;
       }
@@ -32,10 +55,7 @@
       if (node.hasAttribute('href')) {
         const href = node.getAttribute('href');
         if (href) {
-          const newHref = href.replace(
-            new RegExp(CONFIG.originalBrand, 'gi'),
-            CONFIG.newBrand
-          );
+          const newHref = replaceText(href);
           if (href !== newHref) {
             node.setAttribute('href', newHref);
           }
@@ -44,10 +64,7 @@
       if (node.hasAttribute('src')) {
         const src = node.getAttribute('src');
         if (src) {
-          const newSrc = src.replace(
-            new RegExp(CONFIG.originalBrand, 'gi'),
-            CONFIG.newBrand
-          );
+          const newSrc = replaceText(src);
           if (src !== newSrc) {
             node.setAttribute('src', newSrc);
           }
@@ -56,10 +73,7 @@
       if (node.hasAttribute('content')) {
         const content = node.getAttribute('content');
         if (content) {
-          const newContent = content.replace(
-            new RegExp(CONFIG.originalBrand, 'gi'),
-            CONFIG.newBrand
-          );
+          const newContent = replaceText(content);
           if (content !== newContent) {
             node.setAttribute('content', newContent);
           }
@@ -103,19 +117,13 @@
     // 监听 document.write，如果有使用的话
     const originalWrite = document.write;
     document.write = function(html) {
-      const processedHtml = html.replace(
-        new RegExp(CONFIG.originalBrand, 'gi'),
-        CONFIG.newBrand
-      );
+      const processedHtml = replaceText(html);
       originalWrite.call(document, processedHtml);
     };
 
     const originalWriteln = document.writeln;
     document.writeln = function(html) {
-      const processedHtml = html.replace(
-        new RegExp(CONFIG.originalBrand, 'gi'),
-        CONFIG.newBrand
-      );
+      const processedHtml = replaceText(html);
       originalWriteln.call(document, processedHtml);
     };
   }
