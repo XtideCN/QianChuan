@@ -118,8 +118,9 @@ document.addEventListener('DOMContentLoaded', () => {
             // Determine current language
             const isZh = document.documentElement.lang === 'zh' || window.location.pathname.includes('index.zh.html');
             
-            // Email details
-            const emailTo = "contact@xtide.cn";
+            // Email details - 根据域名动态选择
+            const currentHost = window.location.hostname.toLowerCase();
+            const emailTo = currentHost.includes('elite-media') ? "contact@elite-media.us" : "contact@xtide.cn";
             let subject, bodyContent;
             
             if (isZh) {
